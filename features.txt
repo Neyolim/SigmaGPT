@@ -1,0 +1,5 @@
+**Features & Next Steps**
+• User Authentication & Authorization
+• Light & Dark Theme
+• Dropdown Functionality
+• Voice Feature
