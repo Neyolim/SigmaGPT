@@ -89,7 +89,29 @@ ChatGPT includes features like:
 
 ---
 
-## 6. Is ChatGPT an AI or an LLM?
+## 6. What is a Knowledge Cutoff?
+
+A **knowledge cutoff** is the point in time up to which an AI model was trained on information.
+
+This means the model only has built-in knowledge of events, facts, and data available **up to its training cutoff**. It does not automatically know about new events that happened afterward.
+
+### Example
+
+If a model has a knowledge cutoff of **June 2024**, it won't know about events that happened after June 2024 unless it can access the internet or is provided with that information.
+
+### Why is this important?
+
+Knowing the knowledge cutoff helps you understand:
+
+- Why the AI may not know recent news.
+- Why it may ask to search the web for up-to-date information.
+- When you should verify recent or time-sensitive information.
+
+> **A knowledge cutoff is the "last date" of the AI model's built-in knowledge.**
+
+---
+
+## 7. Is ChatGPT an AI or an LLM?
 
 Neither exactly.
 
@@ -100,7 +122,7 @@ When building a ChatGPT clone, you are building the **application**, not the LLM
 
 ---
 
-## 7. How does ChatGPT work?
+## 8. How does ChatGPT work?
 
 A ChatGPT application is made up of three main parts:
 
@@ -124,7 +146,7 @@ User → Frontend → Backend → AI Model → Backend → Frontend → User
 
 ---
 
-# 8. Frontend vs Backend
+# 9. Frontend vs Backend
 
 ## Frontend
 
@@ -151,7 +173,7 @@ Responsibilities:
 
 ---
 
-# 9. Client-Server Architecture
+# 10. Client-Server Architecture
 
 A ChatGPT application follows the Client-Server model.
 
@@ -171,7 +193,7 @@ The **client** sends requests, and the **server** processes them and returns res
 
 ---
 
-# 10. What is an API?
+# 11. What is an API?
 
 An **API (Application Programming Interface)** is a bridge that allows two applications to communicate with each other.
 
@@ -189,7 +211,7 @@ Your App → AI API → AI Response → Your App
 
 ---
 
-# 11. What is an AI API?
+# 12. What is an AI API?
 
 An **AI API** allows developers to use powerful AI models without building or training one themselves.
 
@@ -205,7 +227,7 @@ Your application sends a prompt to the AI API, and the AI returns a generated re
 
 ---
 
-# 12. What is JSON?
+# 13. What is JSON?
 
 **JSON (JavaScript Object Notation)** is a lightweight format used to exchange data between applications.
 
@@ -222,7 +244,7 @@ Almost every API sends and receives data in JSON format.
 
 ---
 
-# 13. Request & Response Cycle
+# 14. Request & Response Cycle
 
 Whenever a user sends a message, the following process happens:
 
@@ -246,7 +268,7 @@ This complete process is called the **Request-Response Cycle**.
 
 ---
 
-# 14. What is a Prompt?
+# 15. What is a Prompt?
 
 A **prompt** is the instruction or question you give to an AI model.
 
@@ -260,7 +282,7 @@ The quality of the prompt often affects the quality of the AI's response.
 
 ---
 
-## 15. What is Prompt Engineering?
+## 16. What is Prompt Engineering?
 
 **Prompt Engineering** is the practice of writing clear and effective prompts to get better responses from an AI model.
 
@@ -291,7 +313,7 @@ Explain JavaScript closures in simple terms with a real-world example suitable f
 
 ---
 
-# 16. What are Tokens?
+# 17. What are Tokens?
 
 AI models don't read text word by word. Instead, they process **tokens**, which are small pieces of text.
 
@@ -314,7 +336,7 @@ API limits and pricing are usually based on the number of tokens processed.
 
 ---
 
-# 17. Chat History (Conversation Context)
+# 18. Chat History (Conversation Context)
 
 AI models don't permanently remember your conversation.
 
@@ -333,7 +355,7 @@ The AI understands that **"he"** refers to Elon Musk because the earlier message
 
 ---
 
-# 18. Streaming Responses
+# 19. Streaming Responses
 
 Instead of waiting for the complete response, the AI can send it **piece by piece** as it is generated.
 
@@ -351,7 +373,7 @@ This makes the application feel faster and more responsive.
 
 ---
 
-# 19. What is Markdown?
+# 20. What is Markdown?
 
 **Markdown** is a lightweight formatting language used to style text.
 
@@ -377,7 +399,7 @@ AI responses often use Markdown so your application can display formatted text, 
 
 ---
 
-## 20. What is CORS?
+## 21. What is CORS?
 
 **CORS (Cross-Origin Resource Sharing)** is a browser security feature that controls whether a frontend can make requests to a backend hosted on a different origin (domain, port, or protocol).
 
@@ -405,3 +427,59 @@ app.use(cors());
 ```
 
 > **Without CORS, your frontend may not be able to communicate with your backend during development.**
+
+## 22. What is the Responses API?
+
+The **Responses API** is OpenAI's latest API for interacting with AI models. It allows your application to send a prompt to a model and receive an AI-generated response.
+
+Unlike the older Chat Completions API, the Responses API provides a more flexible and unified way to work with text, images, tools, and other AI capabilities.
+
+### Example
+
+```js
+const response = await client.responses.create({
+  model: "gpt-4.1",
+  input: "Explain JavaScript in simple terms."
+});
+```
+
+The AI then generates a response based on the input.
+
+### Why use the Responses API?
+
+- Simpler and more flexible.
+- Supports the latest OpenAI models.
+- Designed for future AI features.
+- Recommended by OpenAI for new projects.
+
+> **The Responses API is the modern way to interact with OpenAI models.**
+
+---
+
+## 23. What is the Chat Completions API?
+
+The **Chat Completions API** is OpenAI's older API used to generate responses in a conversation.
+
+Instead of sending a single input, you send a list of messages with different roles (`system`, `user`, and `assistant`).
+
+### Example
+
+```js
+const completion = await client.chat.completions.create({
+  model: "gpt-4.1",
+  messages: [
+    {
+      role: "user",
+      content: "Explain JavaScript."
+    }
+  ]
+});
+```
+
+The AI generates the next assistant message based on the conversation.
+
+### Note
+
+Many existing tutorials still use the Chat Completions API, but OpenAI recommends using the **Responses API** for new applications.
+
+> **The Chat Completions API generates the next message in a conversation.**
