@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import chatRoutes from "./routes/chat.js";
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(cors());
@@ -15,13 +15,13 @@ const connectDB = async () => {
   try {
     await mongoose.connect(process.env.CONNECTION_STRING);
     console.log("Connected with Database !!");
+
+    app.listen(PORT, () => {
+      console.log(`Server running on ${PORT}`);
+    });
   } catch (error) {
-    console.log("Failed to connect with DB", error);
+    console.error("Failed to connect with DB:", error);
   }
 };
 
 connectDB();
-
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
